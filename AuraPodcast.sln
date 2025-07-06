@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36127.28 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuraPodcastWebAPI", "AuraPodcastWebAPI\AuraPodcastWebAPI.csproj", "{519EADB6-4500-42BE-8DE3-CC9BE34E0A0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuraPodcastAvaloniaUI", "AuraPodcastAvaloniaUI\AuraPodcastAvaloniaUI.csproj", "{3B6377AA-4A5C-4B76-86F8-26688CD7EA5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{519EADB6-4500-42BE-8DE3-CC9BE34E0A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{519EADB6-4500-42BE-8DE3-CC9BE34E0A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{519EADB6-4500-42BE-8DE3-CC9BE34E0A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6377AA-4A5C-4B76-86F8-26688CD7EA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6377AA-4A5C-4B76-86F8-26688CD7EA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6377AA-4A5C-4B76-86F8-26688CD7EA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6377AA-4A5C-4B76-86F8-26688CD7EA5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

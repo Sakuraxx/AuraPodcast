@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "AuraPodcastWebAPI\\AuraPodcastWebAPI.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AuraPodcastAvaloniaUI\\AuraPodcastAvaloniaUI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
