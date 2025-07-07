@@ -1,3 +1,4 @@
+using AuraPodcastAvaloniaUI.ViewModels;
 using Avalonia.Controls;
 
 namespace AuraPodcastAvaloniaUI.Views
@@ -7,6 +8,8 @@ namespace AuraPodcastAvaloniaUI.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainWindowViewModel();
         }
     }
 }

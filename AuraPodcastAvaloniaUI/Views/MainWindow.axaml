@@ -3,33 +3,52 @@
         xmlns:vm="using:AuraPodcastAvaloniaUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:vlc="clr-namespace:LibVLCSharp.Avalonia;assembly=LibVLCSharp.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         x:Class="AuraPodcastAvaloniaUI.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Aura Podcast">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
+		<!-- 顶部输入区域 -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10">
+			<TextBox Text="{Binding RssUrl}" Watermark="Enter RSS Feed URL" Width="400"/>
+			<Button Content="Load Feed" Command="{Binding LoadFeedCommand}" HorizontalAlignment="Right"/>
+		</StackPanel>
 
-    <StackPanel Spacing="10" Margin="20">
-        <Button Content="Load Weather Forecast"
-                Command="{Binding LoadForecastsCommand}"
-                HorizontalAlignment="Center"/>
+		<!-- 中间剧集列表 -->
+		<ListBox Grid.Row="1" ItemsSource="{Binding Episodes}" Margin="10,0,10,10">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border BorderBrush="LightGray" BorderThickness="1" Padding="10" Margin="0,5">
+							<StackPanel Spacing="5">
+								<TextBlock FontWeight="Bold" Text="{Binding Title}" TextWrapping="Wrap"/>
+								<TextBlock Text="{Binding PublishingDate, StringFormat='{}{0:yyyy-MM-dd}'}" FontSize="12" Foreground="Gray"/>
+								<!-- 点击这个按钮来播放 -->
+								<Button Content="Play"
+							            Command="{Binding $parent[ListBox].DataContext.PlayEpisodeCommand}"
+							            CommandParameter="{Binding .}"
+							            Margin="0,5,0,0"
+							            HorizontalAlignment="Left"/>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
 
-        <ItemsControl ItemsSource="{Binding Forecasts}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="0,5">
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold" Text="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}"/>
-                            <TextBlock Text="{Binding Summary}"/>
-                            <TextBlock Text="{Binding TemperatureC, StringFormat='Temperature: {0}°C'}"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+		<!-- 底部播放器区域 -->
+		<Border Grid.Row="2" BorderBrush="LightGray" BorderThickness="0,1,0,0" Padding="10">
+			<StackPanel IsVisible="{Binding !!SelectedEpisode}">
+				<TextBlock Text="{Binding SelectedEpisode.Title}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+
+				<!-- LibVLCSharp 的 VideoView 控件 -->
+				<!-- 我们把它绑定到 ViewModel 的 LibVLC 和 MediaPlayer 属性 -->
+				<vlc:VideoView
+                    MediaPlayer="{Binding MediaPlayer}"
+                    Height="60"
+                    Margin="0,5,0,0"/>
+			</StackPanel>
+		</Border>
+	</Grid>
 </Window>
